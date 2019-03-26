@@ -94,8 +94,6 @@ spec:
           containerPort: 7611
           protocol: "TCP"
         volumeMounts:
-        - name: apim-storage-volume
-          mountPath: /home/wso2carbon/wso2am-2.6.0/repository/deployment/server
         - name: apim-conf
           mountPath: /home/wso2carbon/wso2-config-volume/repository/conf
         - name: apim-conf-datasources
@@ -115,16 +113,10 @@ spec:
       - name: chmodfs
         image: busybox
         command: ["chown", "-R", "802:802", "/home/wso2carbon/wso2am-2.6.0/repository/deployment/server"]
-        volumeMounts:
-        - name: apim-storage-volume
-          mountPath: "/home/wso2carbon/wso2am-2.6.0/repository/deployment/server"
       serviceAccountName: "cellerysvc-account"
       imagePullSecrets:
       - name: wso2creds
       volumes:
-      - name: apim-storage-volume
-        persistentVolumeClaim:
-          claimName: apim-repository-deployment-server-pvc
       - name: apim-conf
         configMap:
           name: gw-conf
@@ -175,7 +167,8 @@ spec:
     -
       name: servlet-https
       protocol: TCP
-      port: 9443
+      targetPort: 9443
+      port: 443
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
