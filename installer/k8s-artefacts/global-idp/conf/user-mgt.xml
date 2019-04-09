@@ -26,7 +26,7 @@
             <EveryOneRoleName>everyone</EveryOneRoleName> <!-- By default users in this role sees the registry root -->
             <Property name="isCascadeDeleteEnabled">true</Property>
             <Property name="initializeNewClaimManager">true</Property>
-            <Property name="dataSource">jdbc/WSO2UserDS</Property>
+            <Property name="dataSource">jdbc/WSO2CarbonDB</Property>
         </Configuration>
 
 	    <!-- Following is the configuration for internal JDBC user store. This user store manager is based on JDBC.
@@ -40,7 +40,7 @@
 	    -->
         <UserStoreManager class="org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager">
             <Property name="TenantManager">org.wso2.carbon.user.core.tenant.JDBCTenantManager</Property>
-            <Property name="dataSource">jdbc/WSO2UserDS</Property>
+            <Property name="dataSource">jdbc/WSO2CarbonDB</Property>
             <Property name="ReadOnly">false</Property>
             <Property name="ReadGroups">true</Property>
             <Property name="WriteGroups">true</Property>
